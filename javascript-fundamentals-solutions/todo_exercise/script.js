@@ -34,6 +34,6 @@ bt.addEventListener("click",function(){
 ul.addEventListener("click",function(){
     var li = event.target;
     
-    console.log(li.parentElement);
+    console.log(li.parentElement.querySelector("span"));
 }
 );
