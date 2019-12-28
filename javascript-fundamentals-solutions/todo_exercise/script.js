@@ -1,7 +1,8 @@
 var ul = document.querySelector("ul");
 ul.style.marginTop="10vh";
 var bt = document.querySelector("#insertbt");
-
+if(localStorage.getItem('list')!=null) var arr = JSON.parse(localStorage.getItem('list'));
+else arr=['first'];
 function createButton(src,hint,bt){
     bt.type="image";
     bt.src=src;
@@ -11,44 +12,60 @@ function createButton(src,hint,bt){
     bt.style.marginLeft="12px";
     return bt;
 }
+function addItem(input,id,f){
+    var span = document.createElement('span');
+    var text = document.createTextNode(input);
+    span.appendChild(text);
+    var li=document.createElement("li");
+    li.classList=id;
+    var btDelete = document.createElement("input");
+    var btComplete = document.createElement("input");
+    btDelete.classList+="Delete";
+    btComplete.classList+="Complete";
+    
+    btDelete = createButton("delete.png","Delete task",btDelete);
+    btComplete = createButton("complete.png","Mark as complete",btComplete);
 
+    li.appendChild(span);
+    li.appendChild(btDelete);
+    li.appendChild(btComplete);
+    if(f=='create'){
+        arr.push(input);
+    }
+    console.log(arr);
+    localStorage.setItem('list',JSON.stringify(arr));
+    
+    
+    
+    btComplete.addEventListener("click",function(event){
+        var span = event.target.parentElement.querySelector("span");
+        span.style.textDecoration = "line-through";
+    }
+    );
+    btDelete.addEventListener("click",function(event){
+        var li = event.target.parentElement;
+        arr.splice(li.classList[0],1);
+        console.log(arr);
+        localStorage.setItem('list',JSON.stringify(arr));
+        ul.removeChild(li);
+        
+        
+    });
+    ul.appendChild(li);
+}
+function loadData(){
+    var aux = JSON.parse(localStorage.getItem('list'));
+    for(var i=1;i<aux.length;i++){
+        addItem(aux[i],i,'load');
+    }
+}
+var id=arr.length;
 bt.addEventListener("click",function(){
         var input = document.querySelector("#insertInput").value;
         if(input!=""){
-            var span = document.createElement('span');
-        
-            var text = document.createTextNode(input);
-            span.appendChild(text);
-            var li=document.createElement("li");
-            var btDelete = document.createElement("input");
-            var btComplete = document.createElement("input");
-            btDelete.classList+="Delete";
-            btComplete.classList+="Complete";
-            
-            btDelete = createButton("delete.png","Delete task",btDelete);
-            btComplete = createButton("complete.png","Mark as complete",btComplete);
-
-            li.appendChild(span);
-            li.appendChild(btDelete);
-            li.appendChild(btComplete);
-            btComplete.addEventListener("click",function(event){
-                var span = event.target.parentElement.querySelector("span");
-                span.style.textDecoration = "line-through";
-            }
-            );
-            btDelete.addEventListener("click",function(event){
-                var li = event.target.parentElement;
-                ul.removeChild(li);
-                
-            });
-            ul.appendChild(li);
+            addItem(input,id,'create');
+            id++;
         }
     }
 );
-
-/*ul.addEventListener("click",function(){
-    var li = event.target;
-    console.log(event.target.classList[0]);
-    console.log(li.parentElement.querySelector("span").style.textDecoration = "line-through");
-}
-);*/
+window.addEventListener("load",loadData);
