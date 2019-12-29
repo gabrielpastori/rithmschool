@@ -1,8 +1,14 @@
 var ul = document.querySelector("ul");
 ul.style.marginTop="10vh";
 var bt = document.querySelector("#insertbt");
-if(localStorage.getItem('list')!=null) var arr = JSON.parse(localStorage.getItem('list'));
-else arr=['first'];
+var ok=1;
+if(localStorage.getItem('list')!=null) {
+    var arr = JSON.parse(localStorage.getItem('list'));
+    console.log(arr);
+    var ok = 0;
+}else{
+    var arr=[];
+}
 function createButton(src,hint,bt){
     bt.type="image";
     bt.src=src;
@@ -30,22 +36,30 @@ function addItem(input,id,f){
     li.appendChild(btDelete);
     li.appendChild(btComplete);
     if(f=='create'){
-        arr.push(input);
+        
+        var aux={'value':input,'complete':false};
+        arr.push(aux);
+    }else{
+        if(arr[id]['complete']){
+            span.style.textDecoration = "line-through";
+        }
     }
-    console.log(arr);
     localStorage.setItem('list',JSON.stringify(arr));
     
     
     
     btComplete.addEventListener("click",function(event){
-        var span = event.target.parentElement.querySelector("span");
+        var classV = event.target.parentElement.classList[0];
+        
+        arr[classV]={'value':input,'complete':true};
+        localStorage.setItem('list',JSON.stringify(arr));
+        //console.log(arr);
         span.style.textDecoration = "line-through";
     }
     );
     btDelete.addEventListener("click",function(event){
         var li = event.target.parentElement;
         arr.splice(li.classList[0],1);
-        console.log(arr);
         localStorage.setItem('list',JSON.stringify(arr));
         ul.removeChild(li);
         
@@ -55,11 +69,15 @@ function addItem(input,id,f){
 }
 function loadData(){
     var aux = JSON.parse(localStorage.getItem('list'));
-    for(var i=1;i<aux.length;i++){
-        addItem(aux[i],i,'load');
+    if(!ok){
+        for(var i=0;i<aux.length;i++){
+            addItem(aux[i].value,i,'load');
+        }
     }
 }
-var id=arr.length;
+if(!ok){
+    var id=arr.length;
+}
 bt.addEventListener("click",function(){
         var input = document.querySelector("#insertInput").value;
         if(input!=""){
