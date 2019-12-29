@@ -2,9 +2,9 @@ var ul = document.querySelector("ul");
 ul.style.marginTop="10vh";
 var bt = document.querySelector("#insertbt");
 var ok=1;
+var d=0;
 if(localStorage.getItem('list')!=null) {
     var arr = JSON.parse(localStorage.getItem('list'));
-    console.log(arr);
     var ok = 0;
 }else{
     var arr=[];
@@ -17,6 +17,16 @@ function createButton(src,hint,bt){
     bt.title=hint;
     bt.style.marginLeft="12px";
     return bt;
+}
+function deleteF(classV){
+    var lis = document.querySelectorAll('li')
+    for(var i=0;i<lis.length;i++){
+        if(lis[i].classList[0] == classV){
+            arr.splice(i,1);
+            console.log(i);
+        }
+    }
+
 }
 function addItem(input,id,f){
     var span = document.createElement('span');
@@ -53,15 +63,16 @@ function addItem(input,id,f){
         
         arr[classV]={'value':input,'complete':true};
         localStorage.setItem('list',JSON.stringify(arr));
-        //console.log(arr);
         span.style.textDecoration = "line-through";
     }
     );
     btDelete.addEventListener("click",function(event){
         var li = event.target.parentElement;
-        arr.splice(li.classList[0],1);
+        deleteF(li.classList[0]);
+        console.log(arr);
         localStorage.setItem('list',JSON.stringify(arr));
         ul.removeChild(li);
+        
         
         
     });
