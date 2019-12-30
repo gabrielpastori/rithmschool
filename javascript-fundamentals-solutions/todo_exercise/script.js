@@ -2,7 +2,7 @@ var ul = document.querySelector("ul");
 ul.style.marginTop="10vh";
 var bt = document.querySelector("#insertbt");
 var ok=1;
-var d=0;
+var id=0;
 if(localStorage.getItem('list')!=null) {
     var arr = JSON.parse(localStorage.getItem('list'));
     var ok = 0;
@@ -26,7 +26,6 @@ function deleteF(classV){
             console.log(i);
         }
     }
-
 }
 function addItem(input,id,f){
     var span = document.createElement('span');
@@ -60,7 +59,7 @@ function addItem(input,id,f){
     
     btComplete.addEventListener("click",function(event){
         var classV = event.target.parentElement.classList[0];
-        
+        console.log(event.target.parentElement.classList);
         arr[classV]={'value':input,'complete':true};
         localStorage.setItem('list',JSON.stringify(arr));
         span.style.textDecoration = "line-through";
@@ -69,7 +68,6 @@ function addItem(input,id,f){
     btDelete.addEventListener("click",function(event){
         var li = event.target.parentElement;
         deleteF(li.classList[0]);
-        console.log(arr);
         localStorage.setItem('list',JSON.stringify(arr));
         ul.removeChild(li);
         
@@ -80,6 +78,7 @@ function addItem(input,id,f){
 }
 function loadData(){
     var aux = JSON.parse(localStorage.getItem('list'));
+    console.log(aux);
     if(!ok){
         for(var i=0;i<aux.length;i++){
             addItem(aux[i].value,i,'load');
