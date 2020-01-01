@@ -19,24 +19,30 @@ function createButton(src,hint,bt){
     bt.style.marginLeft="12px";
     return bt;
 }
+function updateClass(){
+    var lis=document.querySelectorAll('li');
+    for(var i=0;i<lis.length;i++){
+        lis[i].classList=i;
+        
+        
+        
+    }
+}
 function deleteF(classV){
     var lis = document.querySelectorAll('li')
     for(var i=0;i<lis.length;i++){
         if(lis[i].classList[0] == classV){
             arr.splice(i,1);
-            console.log(i);
         }
     }
 }
 function decrementId(){
     id--;
-    deletes++;
 }
 function addItem(input,id,f){
     var span = document.createElement('span');
     var text = document.createTextNode(input);
     span.appendChild(text);
-    console.log(input+ " "+id+" "+f );
     var li=document.createElement("li");
     li.classList=id;
     var btDelete = document.createElement("input");
@@ -65,19 +71,18 @@ function addItem(input,id,f){
     
     btComplete.addEventListener("click",function(event){
         var classV = event.target.parentElement.classList[0];
-        console.log(event.target.parentElement.classList);
         arr[classV]={'value':input,'complete':true};
         localStorage.setItem('list',JSON.stringify(arr));
         span.style.textDecoration = "line-through";
     }
     );
     btDelete.addEventListener("click",function(event){
-        var li = event.target.parentElement;
+       
         deleteF(li.classList[0]);
-        console.log(arr);
         localStorage.setItem('list',JSON.stringify(arr));
         ul.removeChild(li);
         decrementId();
+        updateClass();
         
         
         
