@@ -136,3 +136,33 @@ function findByUsername(name){
 }
 console.log(findByUsername('david'));
  
+//Exercises - Part II
+
+function vowelCount(word){
+    word = word.toLowerCase().split('');
+    vowels = ['a','e','i','o','u'];
+    var newArr=[];
+    word.filter(function(val){
+        
+        if(vowels.includes(val)){  
+            newArr[val]=word.reduce(function(acc,next){
+                if(next==val) return acc+1;
+                return acc;
+            },0);
+        }
+    });
+    return newArr;
+}
+console.log(vowelCount("incredible"));
+console.log(vowelCount("awesome"));
+
+function removeVowels(word){
+    word = word.split('');
+    vowels = ['a','e','i','o','u'];
+    return word.filter(function(val){
+        return !vowels.includes(val);
+    });
+}
+console.log(removeVowels('amazing'));
+console.log(removeVowels('fun'));
+console.log(removeVowels('silly'));
