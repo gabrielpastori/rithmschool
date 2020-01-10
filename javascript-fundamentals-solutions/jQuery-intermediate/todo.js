@@ -1,3 +1,5 @@
+//rithmschool todo (refactored from vanilla JS to jQuery).
+//version using vanilla JS: https://github.com/rithmschool/intermediate_javascript_solutions/tree/master/todo_exercise
 window.onload = function(){
     var $todoForm = $("#newTodoForm");
     var $todoList = $("#todoList");
