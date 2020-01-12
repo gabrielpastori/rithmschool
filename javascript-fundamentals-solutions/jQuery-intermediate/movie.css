@@ -1,0 +1,15 @@
+h1{
+    text-align: center;
+}
+form{
+    font-weight: bold;
+    margin-left:100px;
+    display:flex;
+    flex-direction: row;
+}
+form div{
+    margin-right: 50px;
+}
+form div input{
+    margin-left:10px;
+}
