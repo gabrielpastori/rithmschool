@@ -1,15 +1,50 @@
+
+*{
+    font-family: 'Raleway';
+}
 h1{
     text-align: center;
 }
 form{
     font-weight: bold;
-    margin-left:100px;
     display:flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 form div{
-    margin-right: 50px;
+    margin-right: 20px;
 }
 form div input{
     margin-left:10px;
+}
+#myTable{
+    width:50%;
+    margin:auto;
+    margin-top:10vh;
+}
+.tdDelete{
+    text-align: center;
+}
+.delete{
+    width:50%;
+    color:white;
+    border-radius:10%;
+    background-color:hsla(360, 62%, 50%, 1);
+}
+#rating{
+    width:150px;
+}
+th.sorted.ascending:after {
+	content: "  \2191";
+}
+
+th.sorted.descending:after {
+	content: " \2193";
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:first-child{
+    padding-right:30px;
 }

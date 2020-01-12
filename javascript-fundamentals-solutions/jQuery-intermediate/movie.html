@@ -2,8 +2,14 @@
 
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
         <link href="movie.css" type="text/css" rel="stylesheet"/>
-        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="jquery.tablesort.js"></script>
+        <script src="movie.js"></script>
+
     </head>
     <body>
         <h1>My Favorite Movies</h1>
@@ -14,32 +20,30 @@
             </div>
             <div>
                 <label>Rating</label>
-                <input placeholder="Rate the movie from 0 to 10" type="text" id="rating"/>
+                <input id="rating" placeholder="Rate the movie (0-10)" type="number" id="rating" min="0" max="10"/>
             </div>
             <div>
                 <button id="add">Add Movie</button>
             </div>
         </form>
         <table id="myTable">
-            <tr>
-              <th>Title</th>
-              <th>Rating</th>
-              <th>Delete</th>
-            </tr>
-            <tr class="item">
-              <td>Solo Leveling</td>
-              <td>10</td>
-            </tr>
-            <tr class="item">
-              <td>One Punch</td>
-              <td>9</td>
-              </tr>
-            <tr class="item">
-              <td>Shingeki</td>
-              <td>7</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th class="no-sort">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+                <tr>
+                    <td>Interestelar</td>
+                    <td>10</td>
+                    <td class="tdDelete"><button class="delete">delete</button></td>
+                </tr>
+                
+            </tbody>
+            
           </table>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-        <script src="movie.js"></script>
     </body>
 </html>
