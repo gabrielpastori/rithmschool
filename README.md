@@ -1,2 +1,2 @@
 # rithmschool
-Free Online Courses
+Free Online Courses - JavaScript
