@@ -1,9 +1,10 @@
 body{
     margin:0;
     background-color:hsla(193, 1%, 13%, 1);
+    font-family: 'Raleway';
 }
 #header{
-    background-color:hsla(193, 1%, 20%, 1);
+    background-color:hsla(193, 1%, 14%, 1);
 }
 h1{
     color:white;
@@ -39,4 +40,11 @@ button{
     color:white;
     border-color:black;
     border-width: 1px;
+}
+#images{
+    margin-top:5vh;
+    text-align:center;
+}
+#images *{
+    padding:15px;
 }

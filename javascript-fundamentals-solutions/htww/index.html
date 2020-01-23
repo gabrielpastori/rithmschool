@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
+        <title>Giphy</title>
+        
     </head>
     <body>
         <div id="header">
@@ -11,8 +14,13 @@
         <form>
             <input type="text" id="searchInput" placeholder="Enter a search term"/>
             <input type="submit" value="Search Giphy!" class="buttons" id="submitInput"/>
-            <button class="buttons">Remove Gifs</button>
+            <button class="buttons" id="deleteButton">Remove Gifs</button>
         </form>
+        <div id="images">
+
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+        <script src="script.js"></script>
     </body>
 
 </html>
